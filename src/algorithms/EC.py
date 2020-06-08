@@ -51,7 +51,7 @@ class EC():
         return {'bottom_point': {'x': x, 'y': bottomY}, 'high_point': {'x': x, 'y': topY}}
 
 
-    reflectPoint = staticmethod(lambda point: {'x': p['x'], 'y': -p['y'] % params['modulo']})
+    reflectPoint = staticmethod(lambda point, params=params: {'x': point['x'], 'y': -point['y'] % params['modulo']})
 
 
     @staticmethod

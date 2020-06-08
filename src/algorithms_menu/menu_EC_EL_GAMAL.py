@@ -23,11 +23,11 @@ while True:
 
     elif case == EC_EL_GAMAL_choice['SELECT_PUBLIC_KEY']:
         pubKey = readParams()
-        printText('Public key selected. You can validate.')
+        printText('Public key selected. You can encrypt point.')
 
     elif case == EC_EL_GAMAL_choice['SELECT_PRIVATE_KEY']:
         privKey = readParams()
-        printText('Private key selected. You can sign.')
+        printText('Private key selected. You can decrypt point.')
     
     elif case == EC_EL_GAMAL_choice['ENCRYPT_POINT']:
         if not 'pubKey' in locals(): printText('Key is not defined.'); continue
@@ -40,7 +40,7 @@ while True:
         if not 'privKey' in locals(): printText('Key is not defined.'); continue
         if privKey == '': printText('Key is empty.'); continue
 
-        EC_EL_GAMAL.encrypt(privKey)
+        EC_EL_GAMAL.decrypt(privKey)
         printText('Point decrypted.')
 
     elif case == BACK:
