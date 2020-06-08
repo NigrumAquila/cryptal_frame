@@ -15,6 +15,9 @@ EC El Gamal
 http://old.secsem.ru/lections?action=AttachFile&do=get&target=%D0%9A%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0+%D0%AD%D0%BB%D1%8C-%D0%93%D0%B0%D0%BC%D0%B0%D0%BB%D1%8F.pdf
 
 
+Все кривые
+https://tools.ietf.org/html/rfc5639#:~:text=In%20this%20section%2C%20the%20elliptic,p%20defining%20the%20elliptic%20curve.
+
 ECC
 https://cryptobook.nakov.com/asymmetric-key-ciphers/ecc-encryption-decryption
 
