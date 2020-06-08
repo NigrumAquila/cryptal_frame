@@ -18,7 +18,7 @@ def writeParams(params, alg):
         for param in params['private']: pkFile.write(param.encode() + ': '.encode() + str(hex(params['private'][param])[2:].upper()).encode() + '\n'.encode())
         pkFile.close()
         
-        if alg in ASSYMETRIC_ALGORITHMS:
+        if alg in ASSYMETRIC_ALGORITHMS and alg not in ['DH', 'ECDH']:
             pubkFile = open(root + alg.lower() + '.' + filename +'.pubk', 'wb')
             for param in params['public']: pubkFile.write(param.encode() + ': '.encode() + str(hex(params['public'][param])[2:].upper()).encode() + '\n'.encode())
             pubkFile.close()

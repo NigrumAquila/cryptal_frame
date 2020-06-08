@@ -29,6 +29,14 @@ while True:
         __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
         deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
 
+    if case == ALGORITHM_choice['DH']:
+        __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
+        deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
+
+    if case == ALGORITHM_choice['ECDH']:
+        __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
+        deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
+
     elif case == EXIT:
         end('Execution completed.')
 
