@@ -6,7 +6,7 @@ from sympy import randprime
 from random import randint
 
 
-class El_Gamal():
+class EL_GAMAL():
 
     @staticmethod
     def generateKeys():
