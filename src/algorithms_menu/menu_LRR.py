@@ -2,9 +2,11 @@ from ..helpers.constants import LRR_choice, BACK, EXIT
 from ..helpers.colors import printTextAndValue, printText, end, warning
 from ..helpers.fileHelpers import writeParams, readParams
 from ..algorithms.LRR import LRR
+from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+
 
 while True:
-    case = input('Select action: 1 - Generate key; 2 - Select key; 3 - Encrypt file; 4 - Decrypt file; b - Back to algorithms selection; e - Exit: ')
+    case = input('Select action: ' + dictionaryGetValueKeySeparated(LRR_choice) + '; b - BACK TO ALGORITHMS SELECTION; e - EXIT: ').lower()
 
     if case == LRR_choice['GENERATE_KEY']:
         key = LRR.generateKey()

@@ -1,3 +1,6 @@
+from .dictionaryWithoutKeys import dictionaryWithoutKeys
+
+
 EXIT = 'e'
 BACK = 'b'
 KEY_LENGTH_IN_BYTES = 16
@@ -12,6 +15,7 @@ ALGORITHM_choice = {
     'MD5': '5',
 }
 
+ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, 'MD5')
 ASSYMETRIC_ALGORITHMS = ['RSA', 'EC', 'EL_GAMAL']
 
 RSA_choice = {

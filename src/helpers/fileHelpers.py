@@ -1,7 +1,7 @@
 from .pickFile import pickFile
 from .colors import typedText
 from os.path import splitext, isfile
-from .constants import ASSYMETRIC_ALGORITHMS
+from .constants import ASSYMETRIC_ALGORITHMS, ENCRYPTION_ALGORITHMS
 
 
 
@@ -11,17 +11,17 @@ def writeParams(params, alg):
         digestFile.write(params['digest'].upper().encode())
         digestFile.close(); return
 
+    if alg in ENCRYPTION_ALGORITHMS:
+        root = 'keys/'; filename = typedText('Enter filename with key: ')
 
-    root = 'keys/'; filename = typedText('Enter filename with key: ')
-
-    pkFile = open(root + alg.lower() + '.' + filename +'.pk', 'wb')
-    for param in params['private']: pkFile.write(param.encode() + ': '.encode() + str(hex(params['private'][param])[2:].upper()).encode() + '\n'.encode())
-    pkFile.close()
-    
-    if alg in ASSYMETRIC_ALGORITHMS:
-        pubkFile = open(root + alg.lower() + '.' + filename +'.pubk', 'wb')
-        for param in params['public']: pubkFile.write(param.encode() + ': '.encode() + str(hex(params['public'][param])[2:].upper()).encode() + '\n'.encode())
-        pubkFile.close()
+        pkFile = open(root + alg.lower() + '.' + filename +'.pk', 'wb')
+        for param in params['private']: pkFile.write(param.encode() + ': '.encode() + str(hex(params['private'][param])[2:].upper()).encode() + '\n'.encode())
+        pkFile.close()
+        
+        if alg in ASSYMETRIC_ALGORITHMS:
+            pubkFile = open(root + alg.lower() + '.' + filename +'.pubk', 'wb')
+            for param in params['public']: pubkFile.write(param.encode() + ': '.encode() + str(hex(params['public'][param])[2:].upper()).encode() + '\n'.encode())
+            pubkFile.close()
 
 
 def readParams():

@@ -2,10 +2,11 @@ from ..helpers.constants import RSA_choice, BACK, EXIT
 from ..helpers.colors import printTextAndValue, printText, end, warning
 from ..helpers.fileHelpers import writeParams, readParams
 from ..algorithms.RSA import RSA
+from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
 
 
 while True:
-    case = input('Select action: 1 - Generate keys; 2 - Select public key; 3 - Select private key; 4 - Encrypt file; 5 - Decrypt file; b - Back to algorithms selection; e - Exit: ')
+    case = input('Select action: ' + dictionaryGetValueKeySeparated(RSA_choice) + '; b - BACK TO ALGORITHMS SELECTION; e - EXIT: ').lower()
 
     if case == RSA_choice['GENERATE_KEYS']:
         keys = RSA.generateKeys()

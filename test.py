@@ -8,4 +8,9 @@ ALGORITHM_choice = {
     'MD5': '5',
 }
 
-print(without_keys(ALGORITHM_choice, 'RSA'))
+dictionaryGetValueKey = lambda dictionary: [value + ' - ' +key for key, value in dictionary.items()]
+
+getAlgorithmsSeparated = lambda dictionary: '; '.join(dictionaryGetValueKey(dictionary))
+
+
+print(getAlgorithmsSeparated(ALGORITHM_choice))

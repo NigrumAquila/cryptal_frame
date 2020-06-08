@@ -3,9 +3,11 @@ from ..helpers.colors import printTextAndValue, printText, end, warning
 from ..helpers.fileHelpers import writeParams
 from ..helpers.pickFile import pickFile
 from ..algorithms.MD5 import MD5
+from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+
 
 while True:
-    case = input('Select action: 1 - Generate file digest; b - Back to algorithms selection; e - Exit: ')
+    case = input('Select action: ' + dictionaryGetValueKeySeparated(MD5_choice) + '; b - BACK TO ALGORITHMS SELECTION; e - EXIT: ').lower()
 
     if case == MD5_choice['GENERATE_DIGEST']:
         filename = pickFile()
