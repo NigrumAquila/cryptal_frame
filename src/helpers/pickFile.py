@@ -4,4 +4,4 @@ root = Tk()
 root.attributes("-topmost", True)
 root.withdraw()
 
-pickFile = lambda: filedialog.askopenfilename()
+pickFile = lambda title='Открытие': filedialog.askopenfilename(title=title)
