@@ -6,6 +6,12 @@ from .constants import ASSYMETRIC_ALGORITHMS, ENCRYPTION_ALGORITHMS
 
 
 def writeParams(params, alg):
+    if alg == 'EC_EL_GAMAL_WRITE_POINT':
+        root = 'points/'; filename = typedText('Enter filename with point: ')
+        pointFile = open(root + 'ec_point.' + filename + '.p', 'wb')
+        for param in params.keys(): pointFile.write(param.encode() + ': '.encode() + str(params[param]).encode() + '\n'.encode())
+        pointFile.close(); return
+
     if alg == 'MD5':
         digestFile = open(params['filename'] + '.' + alg.lower() + '_digest', 'wb')
         digestFile.write(params['digest'].upper().encode())

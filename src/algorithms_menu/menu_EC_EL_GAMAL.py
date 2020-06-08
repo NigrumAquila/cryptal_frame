@@ -16,7 +16,10 @@ while True:
         printText('Keys generated.')
 
     elif case == EC_EL_GAMAL_choice['GENERATE_POINT']:
-        pass
+        point = EC_EL_GAMAL.generatePoint()
+        printTextAndValue('Point', point)
+        writeParams(point, 'EC_EL_GAMAL_WRITE_POINT')
+        printText('Point generated')
 
     elif case == EC_EL_GAMAL_choice['SELECT_PUBLIC_KEY']:
         pubKey = readParams()
@@ -27,15 +30,17 @@ while True:
         printText('Private key selected. You can sign.')
     
     elif case == EC_EL_GAMAL_choice['ENCRYPT_POINT']:
-        if not 'privKey' in locals(): printText('Key is not defined.'); continue
-        if privKey == '': printText('Key is empty.'); continue
-
-        printText('Point encrypted.')
-
-    elif case == EC_EL_GAMAL_choice['DECRYPT_POINT']:
         if not 'pubKey' in locals(): printText('Key is not defined.'); continue
         if pubKey == '': printText('Key is empty.'); continue
 
+        EC_EL_GAMAL.encrypt(pubKey)
+        printText('Point encrypted.')
+
+    elif case == EC_EL_GAMAL_choice['DECRYPT_POINT']:
+        if not 'privKey' in locals(): printText('Key is not defined.'); continue
+        if privKey == '': printText('Key is empty.'); continue
+
+        EC_EL_GAMAL.encrypt(privKey)
         printText('Point decrypted.')
 
     elif case == BACK:
