@@ -16,6 +16,7 @@ ALGORITHM_choice = {
     'DH': '6',
     'ECDH': '7',
     'EC_EL_GAMAL': '8',
+    'AES': '9',
 }
 
 ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, 'MD5')
@@ -26,14 +27,14 @@ RSA_choice = {
     'SELECT_PUBLIC_KEY': '2',
     'SELECT_PRIVATE_KEY': '3',
     'ENCRYPT_FILE': '4',
-    'DECRYPT_FILE': '5'    
+    'DECRYPT_FILE': '5',   
 }
 
 LRR_choice = {
     'GENERATE_KEY': '1',
     'SELECT_KEY': '2',
     'ENCRYPT_FILE': '3',
-    'DECRYPT_FILE': '4'
+    'DECRYPT_FILE': '4',
 }
 
 ECDSA_choice = {
@@ -41,7 +42,7 @@ ECDSA_choice = {
     'SELECT_PUBLIC_KEY': '2',
     'SELECT_PRIVATE_KEY': '3',
     'SIGN_FILE': '4',
-    'VALIDATE_FILE': '5'
+    'VALIDATE_FILE': '5',
 }
 
 EL_GAMAL_choice = {
@@ -49,7 +50,7 @@ EL_GAMAL_choice = {
     'SELECT_PUBLIC_KEY': '2',
     'SELECT_PRIVATE_KEY': '3',
     'ENCRYPT_FILE': '4',
-    'DECRYPT_FILE': '5'
+    'DECRYPT_FILE': '5',
 }
 
 MD5_choice = {
@@ -70,5 +71,12 @@ EC_EL_GAMAL_choice = {
     'SELECT_PUBLIC_KEY': '3',
     'SELECT_PRIVATE_KEY': '4',
     'ENCRYPT_POINT': '5',
-    'DECRYPT_POINT': '6'
+    'DECRYPT_POINT': '6',
+}
+
+AES_choice = {
+    'GENERATE_KEY': '1',
+    'SELECT_KEY': '2',
+    'ENCRYPT_FILE': '3',
+    'DECRYPT_FILE': '4',
 }

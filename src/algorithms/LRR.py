@@ -35,7 +35,6 @@ class LRR:
                 shift_register_state = gamma
                 cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
                 cipherBytes = cipherChar.to_bytes(KEY_LENGTH_IN_BYTES, byteorder='big')
-                # print(cipherBytes); exit()
                 dstFile.write(cipherBytes)
                 bar.next()
         srcFile.close(); dstFile.close()
