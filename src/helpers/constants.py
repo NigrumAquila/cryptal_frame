@@ -15,10 +15,11 @@ ALGORITHM_choice = {
     'MD5': '5',
     'DH': '6',
     'ECDH': '7',
+    'EC_EL_GAMAL': '8',
 }
 
 ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, 'MD5')
-ASSYMETRIC_ALGORITHMS = ['RSA', 'EC', 'EL_GAMAL', 'DH', 'ECDH']
+ASSYMETRIC_ALGORITHMS = ['RSA', 'EC', 'EL_GAMAL', 'DH', 'ECDH', 'EC_EL_GAMAL']
 
 RSA_choice = {
     'GENERATE_KEYS': '1',
@@ -61,4 +62,13 @@ DH_choice = {
 
 ECDH_choice = {
     'GENERATE_SECRET': '1',
+}
+
+EC_EL_GAMAL_choice = {
+    'GENERATE_KEYS': '1',
+    'GENERATE_POINT': '2',
+    'SELECT_PUBLIC_KEY': '3',
+    'SELECT_PRIVATE_KEY': '4',
+    'ENCRYPT_POINT': '5',
+    'DECRYPT_POINT': '6'
 }

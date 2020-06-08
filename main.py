@@ -1,7 +1,6 @@
 import src.helpers.encoding
-from src.helpers.colors import changeColor, defaultColor, warning, printText, printValue, printTextAndValue, typedText, end
-from src.helpers.fileHelpers import readParams, writeParams
-from src.helpers.constants import ALGORITHM_choice, RSA_choice, LRR_choice, ECDSA_choice, EL_GAMAL_choice, BACK, EXIT, ALGORITHM_MENU_MODULE_SPACE
+from src.helpers.colors import warning, end
+from src.helpers.constants import ALGORITHM_choice, BACK, EXIT, ALGORITHM_MENU_MODULE_SPACE
 from src.helpers.deleteModuleIfReturn import deleteModuleIfReturn
 from src.helpers.dictionaryKeyParser import dictionaryKeyParser
 from src.helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
@@ -34,6 +33,10 @@ while True:
         deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
 
     if case == ALGORITHM_choice['ECDH']:
+        __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
+        deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
+
+    if case == ALGORITHM_choice['EC_EL_GAMAL']:
         __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
         deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
 
