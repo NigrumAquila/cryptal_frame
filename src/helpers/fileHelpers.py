@@ -9,7 +9,7 @@ def writeParams(params, alg):
     if alg == 'EC_EL_GAMAL_WRITE_POINT':
         root = 'points/'; filename = typedText('Enter filename with point: ')
         pointFile = open(root + 'ec_point.' + filename + '.p', 'wb')
-        for param in params.keys(): pointFile.write(param.encode() + ': '.encode() + str(params[param]).encode() + '\n'.encode())
+        for param in params.keys(): pointFile.write(param.encode() + ': '.encode() + str(hex(params[param])[2:]).encode() + '\n'.encode())
         pointFile.close(); return
 
     if alg == 'MD5':
