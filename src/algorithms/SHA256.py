@@ -118,3 +118,7 @@ def _maj(x: int, y: int, z: int):
 def _rotate_right(num: int, shift: int, size: int = 32):
     return (num >> shift) | (num << size - shift)
 
+
+class SHA256():
+
+    hexdigest = staticmethod(lambda data: generate_hash(data)) 

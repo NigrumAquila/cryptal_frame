@@ -1,7 +1,7 @@
 from .pickFile import pickFile
 from .colors import typedText
 from os.path import splitext, isfile
-from .constants import ASSYMETRIC_ALGORITHMS, ENCRYPTION_ALGORITHMS
+from .constants import ASSYMETRIC_ALGORITHMS, ENCRYPTION_ALGORITHMS, HASH_FUNCTIONS
 
 
 
@@ -12,7 +12,7 @@ def writeParams(params, alg):
         for param in params.keys(): pointFile.write(param.encode() + ': '.encode() + str(hex(params[param])[2:]).encode() + '\n'.encode())
         pointFile.close(); return
 
-    if alg == 'MD5':
+    if alg in HASH_FUNCTIONS:
         digestFile = open(params['filename'] + '.' + alg.lower() + '_digest', 'wb')
         digestFile.write(params['digest'].upper().encode())
         digestFile.close(); return

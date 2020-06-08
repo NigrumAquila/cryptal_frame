@@ -18,9 +18,11 @@ ALGORITHM_choice = {
     'EC_EL_GAMAL': '8',
     'AES': '9',
     'DES': '10',
+    'SHA256': '11',
 }
 
-ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, 'MD5')
+ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, ['MD5', 'SHA256'])
+HASH_FUNCTIONS = {'MD5', 'SHA256'}
 ASSYMETRIC_ALGORITHMS = ['RSA', 'EC', 'EL_GAMAL', 'DH', 'ECDH', 'EC_EL_GAMAL']
 
 RSA_choice = {
@@ -87,4 +89,8 @@ DES_choice = {
     'SELECT_KEY': '2',
     'ENCRYPT_FILE': '3',
     'DECRYPT_FILE': '4',
+}
+
+SHA256_choice = {
+    'GENERATE_DIGEST': '1',
 }

@@ -1,4 +1,4 @@
-from random import randrange
+from random import randint
 from hashlib import sha1
 from src.common.multiplicativeInverse import multiplicativeInverse
 from sympy import isprime
@@ -10,7 +10,7 @@ def generate_p_q(L, N):
     b = (L - 1) % g
     while True:
         while True:
-            s = randrange(1, 2 ** (g))
+            s = randint(1, 2 ** (g))
             a = sha1(bin(s).encode()).hexdigest()
             zz = (s + 1) % (2 ** g)
             z = sha1(bin(zz).encode()).hexdigest()
@@ -43,7 +43,7 @@ def generate_p_q(L, N):
 
 def generate_g(p, q):
     while True:
-        h = randrange(2, p - 1)
+        h = randint(2, p - 1)
         exp = (p - 1) // q
         g = pow(h, exp, p)
         if g > 1:
@@ -52,7 +52,7 @@ def generate_g(p, q):
 
 
 def generate_keys(g, p, q):
-    x = randrange(2, q)
+    x = randint(2, q)
     y = pow(g, x, p)
     return x, y
 
@@ -67,7 +67,7 @@ def sign(M, p, q, g, x):
     if not validate_params(p, q, g):
         raise Exception("Invalid params")
     while True:
-        k = randrange(2, q)
+        k = randint(2, q)
         r = pow(g, k, p) % q
         m = int(sha1(M).hexdigest(), 16)
         try:
