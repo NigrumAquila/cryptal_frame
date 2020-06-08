@@ -17,6 +17,7 @@ ALGORITHM_choice = {
     'ECDH': '7',
     'EC_EL_GAMAL': '8',
     'AES': '9',
+    'DES': '10',
 }
 
 ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, 'MD5')
@@ -75,6 +76,13 @@ EC_EL_GAMAL_choice = {
 }
 
 AES_choice = {
+    'GENERATE_KEY': '1',
+    'SELECT_KEY': '2',
+    'ENCRYPT_FILE': '3',
+    'DECRYPT_FILE': '4',
+}
+
+DES_choice = {
     'GENERATE_KEY': '1',
     'SELECT_KEY': '2',
     'ENCRYPT_FILE': '3',
