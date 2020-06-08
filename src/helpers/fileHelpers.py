@@ -5,29 +5,35 @@ from .constants import ASSYMETRIC_ALGORITHMS
 
 
 
-def writeParams(key, alg):
+def writeParams(params, alg):
+    if alg == 'MD5':
+        digestFile = open(params['filename'] + '.' + alg.lower() + '_digest', 'wb')
+        digestFile.write(params['digest'].upper().encode())
+        digestFile.close(); return
+
+
     root = 'keys/'; filename = typedText('Enter filename with key: ')
 
     pkFile = open(root + alg.lower() + '.' + filename +'.pk', 'wb')
-    for param in key['private']: pkFile.write(param.encode() + ': '.encode() + str(hex(key['private'][param])[2:].upper()).encode() + '\n'.encode())
+    for param in params['private']: pkFile.write(param.encode() + ': '.encode() + str(hex(params['private'][param])[2:].upper()).encode() + '\n'.encode())
     pkFile.close()
     
     if alg in ASSYMETRIC_ALGORITHMS:
         pubkFile = open(root + alg.lower() + '.' + filename +'.pubk', 'wb')
-        for param in key['public']: pubkFile.write(param.encode() + ': '.encode() + str(hex(key['public'][param])[2:].upper()).encode() + '\n'.encode())
+        for param in params['public']: pubkFile.write(param.encode() + ': '.encode() + str(hex(params['public'][param])[2:].upper()).encode() + '\n'.encode())
         pubkFile.close()
 
 
 def readParams():
     pathToParams = pickFile()
 
-    keys = {}
+    params = {}
     fileParams = open(pathToParams, 'r').readlines()
     for line in fileParams:
         trim = line.find(':')
-        key = line[:trim]
-        keys[key] = int(line[trim+2:], 16)
-    return keys
+        param = line[:trim]
+        params[param] = int(line[trim+2:], 16)
+    return params
 
 
 

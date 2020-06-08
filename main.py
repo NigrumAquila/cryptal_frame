@@ -7,7 +7,7 @@ from src.helpers.dictionaryKeyParser import dictionaryKeyParser
 
 
 while True:
-    case = input('Select action: 1 - RSA; 2 - Linear recurrent register; 3 - ECDSA; 4 - El Gamal; e - to exit: ')
+    case = input('Select action: 1 - RSA; 2 - Linear recurrent register; 3 - ECDSA; 4 - El Gamal; 5 - MD5; e - to exit: ')
     if case == ALGORITHM_choice['RSA']:
         __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
         deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
@@ -21,6 +21,10 @@ while True:
         deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
 
     if case == ALGORITHM_choice['EL_GAMAL']:
+        __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
+        deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
+
+    if case == ALGORITHM_choice['MD5']:
         __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
         deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
 
