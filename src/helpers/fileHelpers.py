@@ -30,8 +30,8 @@ def writeParams(params, alg):
             pubkFile.close()
 
 
-def readParams():
-    pathToParams = pickFile()
+def readParams(pathToParams=None):
+    if pathToParams == None: pathToParams = pickFile()
 
     params = {}
     fileParams = open(pathToParams, 'r').readlines()
