@@ -121,4 +121,4 @@ def _rotate_right(num: int, shift: int, size: int = 32):
 
 class SHA256():
 
-    hexdigest = staticmethod(lambda data: generate_hash(data)) 
+    digest = staticmethod(lambda data: generate_hash(data)) 

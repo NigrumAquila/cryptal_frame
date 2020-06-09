@@ -21,11 +21,11 @@ class ECDSA():
         srcFile.close(); dstFile.close()
 
 
-    def validate(publicKey):
+    def verify(publicKey):
         assert EC.validatePoint({'x': publicKey['Qx'], 'y': publicKey['Qy']})
         assert EC.multiply({'x': publicKey['Qx'], 'y': publicKey['Qy']}, publicKey['order']) == EC.ZERO_POINT
 
-        srcFile, signFile = pickFileFor('validate')
+        srcFile, signFile = pickFileFor('verify')
         hashValue = int.from_bytes(MD5(srcFile.read()).digest(), byteorder='big')
         signature = {}
         for line in signFile.readlines():

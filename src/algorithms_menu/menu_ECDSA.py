@@ -12,12 +12,12 @@ while True:
         keys = ECDSA.generateKeys()
         printTextAndValue('public key', keys['public'])
         printTextAndValue('private key', keys['private'])
-        writeParams(keys, 'EC')
+        writeParams(keys, 'ECDSA')
         printText('Keys generated.')
 
     elif case == ECDSA_choice['SELECT_PUBLIC_KEY']:
         pubKey = readParams()
-        printText('Public key selected. You can validate.')
+        printText('Public key selected. You can verify.')
 
     elif case == ECDSA_choice['SELECT_PRIVATE_KEY']:
         privKey = readParams()
@@ -30,12 +30,12 @@ while True:
         ECDSA.sign(privKey)
         printText('File signed.')
 
-    elif case == ECDSA_choice['VALIDATE_FILE']:
+    elif case == ECDSA_choice['VERIFY_FILE']:
         if not 'pubKey' in locals(): printText('Key is not defined.'); continue
         if pubKey == '': printText('Key is empty.'); continue
 
-        verdict = 'successfully' if ECDSA.validate(pubKey) else 'failed'
-        printText('Validation '+ verdict + '.')
+        verdict = 'successful' if ECDSA.verify(pubKey) else 'failed'
+        printText('Verification  '+ verdict + '.')
 
     elif case == BACK:
         break

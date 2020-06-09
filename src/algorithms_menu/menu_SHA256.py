@@ -11,7 +11,7 @@ while True:
 
     if case == SHA256_choice['GENERATE_DIGEST']:
         filename = pickFile()
-        digest = SHA256.hexdigest(open(filename, 'rb').read()).hex()
+        digest = SHA256.digest(open(filename, 'rb').read()).hex()
         params = {'filename': filename, 'digest': digest}
         printTextAndValue('digest', digest)
         writeParams(params, 'SHA256')

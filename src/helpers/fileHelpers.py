@@ -52,7 +52,7 @@ def pickFileFor(purpose):
         else: raise Exception('You are trying to decrypt an unencrypted file.')
     
     elif purpose == 'sign': dstFilePath = filename + '.sign'
-    elif purpose == 'validate':
+    elif purpose == 'verify':
         if not isfile(filename + '.sign'): raise Exception('Signature not exist')
         if file_extension == '.sign': raise Exception('You picked signature. Nonsense.')
         return open(srcFilePath, 'rb'), open(filename + '.sign', 'rb')

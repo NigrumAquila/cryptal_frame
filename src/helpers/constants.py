@@ -23,7 +23,7 @@ ALGORITHM_choice = {
 
 ENCRYPTION_ALGORITHMS = dictionaryWithoutKeys(ALGORITHM_choice, ['MD5', 'SHA256'])
 HASH_FUNCTIONS = {'MD5', 'SHA256'}
-ASSYMETRIC_ALGORITHMS = ['RSA', 'EC', 'EL_GAMAL', 'DH', 'ECDH', 'EC_EL_GAMAL']
+ASSYMETRIC_ALGORITHMS = ['RSA', 'ECDSA', 'EL_GAMAL', 'DH', 'ECDH', 'EC_EL_GAMAL']
 
 RSA_choice = {
     'GENERATE_KEYS': '1',
@@ -45,7 +45,7 @@ ECDSA_choice = {
     'SELECT_PUBLIC_KEY': '2',
     'SELECT_PRIVATE_KEY': '3',
     'SIGN_FILE': '4',
-    'VALIDATE_FILE': '5',
+    'VERIFY_FILE': '5',
 }
 
 EL_GAMAL_choice = {
