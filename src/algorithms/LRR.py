@@ -21,7 +21,7 @@ class LRR:
 
     @staticmethod
     def encrypt(key):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
         shift_register_state = key['seed']
@@ -42,7 +42,7 @@ class LRR:
 
     @staticmethod
     def decrypt(key):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
         shift_register_state = key['seed']

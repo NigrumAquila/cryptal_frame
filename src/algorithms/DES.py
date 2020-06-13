@@ -1,6 +1,4 @@
 from ..helpers.fileHelpers import pickFileFor
-
-
 import warnings
 import numpy as np
 from bitstring import Bits
@@ -308,7 +306,7 @@ class DES():
 
     @staticmethod
     def encrypt(key):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
 
@@ -326,7 +324,7 @@ class DES():
     
     @staticmethod
     def decrypt(key):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
 

@@ -20,7 +20,7 @@ class EL_GAMAL():
 
     @staticmethod
     def encrypt(publicKey):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
         srcFile, dstFile = pickFileFor('encrypt')
         k = randint(1, publicKey['p'] - 1)
         a = pow(publicKey['g'], k, publicKey['p'])
@@ -40,7 +40,7 @@ class EL_GAMAL():
 
     @staticmethod
     def decrypt(privateKey):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
         a = int.from_bytes(srcFile.read(KEY_LENGTH_IN_BYTES), byteorder='big')

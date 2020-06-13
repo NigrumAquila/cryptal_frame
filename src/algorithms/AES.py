@@ -96,7 +96,7 @@ class AES():
 
     @staticmethod
     def encrypt(round_keys):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
 
@@ -122,7 +122,7 @@ class AES():
 
     @staticmethod
     def decrypt(round_keys):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
 

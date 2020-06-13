@@ -21,7 +21,7 @@ class RSA:
 
     @staticmethod
     def encrypt(publicKey):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
         
@@ -39,7 +39,7 @@ class RSA:
 
     @staticmethod
     def decrypt(privateKey):
-        from progress.bar import Bar
+        from progress.bar import FillingCirclesBar as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
         d, n  = int(privateKey['d']), int(privateKey['n'])
