@@ -1,8 +1,8 @@
-from random import randint
-from src.common.multiplicativeInverse import multiplicativeInverse
-from sympy import isprime
 from src.algorithms.SHA256 import SHA256
-from ..helpers.fileHelpers import pickFileFor, readParams
+from core.helpers.fileHelpers import pickFileFor, readParams
+from core.math.multiplicativeInverse import multiplicativeInverse
+from random import randint
+from sympy import isprime
 
 
 class DSA():

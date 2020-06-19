@@ -1,4 +1,4 @@
-from ..helpers.fileHelpers import pickFileFor
+from core.helpers.fileHelpers import pickFileFor
 
 
 Sbox = (
@@ -100,7 +100,7 @@ class AES():
 
         srcFile, dstFile = pickFileFor('encrypt')
 
-        with Bar('Processing', max=len(srcFile.read())/(16)+1) as bar:
+        with Bar('Processing', max=len(srcFile.read())/(16)) as bar:
             srcFile.seek(0)
             while True:
                 block = srcFile.read(16)

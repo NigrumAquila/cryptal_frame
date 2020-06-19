@@ -1,8 +1,9 @@
-from ..helpers.constants import DSA_choice, BACK, EXIT
-from ..helpers.colors import printTextAndValue, printText, end, warning
-from ..helpers.fileHelpers import writeParams, readParams
-from ..algorithms.DSA import DSA
-from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+from src.algorithms.DSA import DSA
+from src.constants.algorithmMenuConstants import DSA_choice
+from core.constants.interfaceConstants import BACK, EXIT
+from core.styles.colors import printTextAndValue, printText, end, warning
+from core.helpers.fileHelpers import writeParams, readParams
+from core.helpers.dictionaryHelpers import dictionaryGetValueKeySeparated
 
 
 while True:

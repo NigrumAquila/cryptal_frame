@@ -1,7 +1,7 @@
-from ..common.multiplicativeInverse import multiplicativeInverse
-from ..common.sqrtModP import sqrtModP, squareRoot
-from ..helpers.fileHelpers import readParams
-from ..helpers.constants import KEY_LENGTH_IN_BITS
+from core.math.multiplicativeInverse import multiplicativeInverse
+from core.math.sqrtModP import sqrtModP, squareRoot
+from core.helpers.fileHelpers import readParams
+from src.constants.keyConstants import KEY_LENGTH_IN_BITS
 from labmath import sqrtmod_prime
 from random import randint
 

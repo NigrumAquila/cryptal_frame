@@ -1,7 +1,7 @@
-from ..common.findPrimitiveRoot import findPrimitiveRoot
-from ..common.multiplicativeInverse import multiplicativeInverse
-from ..helpers.fileHelpers import pickFileFor
-from ..helpers.constants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
+from core.math.findPrimitiveRoot import findPrimitiveRoot
+from core.math.multiplicativeInverse import multiplicativeInverse
+from core.helpers.fileHelpers import pickFileFor
+from src.constants.keyConstants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
 from sympy import randprime
 from random import randint
 

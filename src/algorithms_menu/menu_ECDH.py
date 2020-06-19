@@ -1,8 +1,9 @@
-from ..helpers.constants import ECDH_choice, BACK, EXIT
-from ..helpers.colors import printText, printTextAndValue, end, warning
-from ..helpers.fileHelpers import writeParams
-from ..algorithms.ECDH import ECDH
-from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+from src.algorithms.ECDH import ECDH
+from src.constants.algorithmMenuConstants import ECDH_choice
+from core.constants.interfaceConstants import BACK, EXIT
+from core.styles.colors import printText, printTextAndValue, end, warning
+from core.helpers.fileHelpers import writeParams
+from core.helpers.dictionaryHelpers import dictionaryGetValueKeySeparated
 
 
 while True:
@@ -10,8 +11,8 @@ while True:
 
     if case == ECDH_choice['GENERATE_SECRET']:
         secret = ECDH.generateSharedSecret()
-        writeParams(secret, 'ECDH')
         printTextAndValue('secret', secret)
+        writeParams(secret, 'ECDH')
         printText('Secret generated.')
 
     elif case == BACK:

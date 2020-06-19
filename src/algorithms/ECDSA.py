@@ -1,7 +1,7 @@
-from .EC import EC
-from .MD5 import MD5
-from ..helpers.fileHelpers import pickFileFor
-from ..common.multiplicativeInverse import multiplicativeInverse
+from src.algorithms.EC import EC
+from src.algorithms.MD5 import MD5
+from core.helpers.fileHelpers import pickFileFor
+from core.math.multiplicativeInverse import multiplicativeInverse
 from random import randint
 
 

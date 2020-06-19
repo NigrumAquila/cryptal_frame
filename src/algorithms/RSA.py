@@ -1,7 +1,7 @@
-from ..common.checkPrimesRelatively import checkPrimesRelatively
-from ..common.multiplicativeInverse import multiplicativeInverse
-from ..helpers.fileHelpers import pickFileFor
-from ..helpers.constants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
+from core.helpers.fileHelpers import pickFileFor
+from core.math.checkPrimesRelatively import checkPrimesRelatively
+from core.math.multiplicativeInverse import multiplicativeInverse
+from src.constants.keyConstants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
 from sympy import randprime
 
 

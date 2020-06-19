@@ -1,8 +1,9 @@
-from ..helpers.constants import DH_choice, BACK, EXIT
-from ..helpers.colors import printText, printTextAndValue, end, warning
-from ..helpers.fileHelpers import writeParams
-from ..algorithms.DH import DH
-from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+from src.algorithms.DH import DH
+from src.constants.algorithmMenuConstants import DH_choice
+from core.constants.interfaceConstants import BACK, EXIT
+from core.styles.colors import printText, printTextAndValue, end, warning
+from core.helpers.fileHelpers import writeParams
+from core.helpers.dictionaryHelpers import dictionaryGetValueKeySeparated
 
 
 while True:
@@ -10,8 +11,8 @@ while True:
 
     if case == DH_choice['GENERATE_SECRET']:
         secret = DH.generateSharedSecret()
-        writeParams(secret, 'DH')
         printTextAndValue('secret', secret)
+        writeParams(secret, 'DH')
         printText('Secret generated.')
 
     elif case == BACK:

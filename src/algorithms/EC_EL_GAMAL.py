@@ -1,7 +1,6 @@
-from .EC import EC
-from ..helpers.fileHelpers import pickFileFor, readParams, writeParams
+from src.algorithms.EC import EC
+from core.helpers.fileHelpers import pickFileFor, readParams, writeParams
 from random import randint
-from ..helpers.pickFile import pickFile
 
 
 class EC_EL_GAMAL():
@@ -17,12 +16,13 @@ class EC_EL_GAMAL():
 
     @staticmethod
     def encrypt(publicKey):
-        filename = pickFile()
-        point = readParams(filename)
+        # filename = pickFile()
+        # point = readParams(filename)
+        point, dstFile = pickFileFor('encryptPoint')
         k = randint(0, publicKey['order'])
         a = EC.multiply({'x': publicKey['x'], 'y': publicKey['y']}, k)
         b = EC.addition({'x': point['x'],'y': point['y']}, EC.multiply({'x': publicKey['Qx'], 'y': publicKey['Qy']}, k))
-        dstFile = open(filename[:-2] + '.encrypted' + filename[-2:], 'wb')
+        # dstFile = open(filename[:-2] + '.encrypted' + filename[-2:], 'wb')
         
         # cipher = [a, b]
         # for half in cipher:
@@ -35,9 +35,10 @@ class EC_EL_GAMAL():
 
     @staticmethod
     def decrypt(privateKey):
-        filename = pickFile()
-        cipher = readParams(filename)
+        # filename = pickFile()
+        # cipher = readParams(filename)
+        cipher, dstFile = pickFileFor('decryptPoint')
         decryptedPoint = EC.addition({'x': cipher['bx'], 'y': cipher['by']}, EC.reflectPoint(EC.multiply({'x': cipher['ax'],'y': cipher['ay']}, privateKey['d'])))
-        dstFile = open(filename[:-12] + '.decrypted' + filename[-2:], 'wb')
+        # dstFile = open(filename[:-12] + '.decrypted' + filename[-2:], 'wb')
         for param in decryptedPoint.keys(): dstFile.write(param.encode() + ': '.encode() + str(hex(decryptedPoint[param])[2:]).encode() + '\n'.encode())
         dstFile.close()

@@ -1,8 +1,7 @@
-from .EC import EC
-from ..helpers.fileHelpers import pickFileFor
-from ..helpers.fileHelpers import readParams
+from src.algorithms.EC import EC
+from core.helpers.fileHelpers import readParams, pickFileFor
+from src.constants.keyConstants import KEY_LENGTH_IN_BITS
 from random import randint
-from ..helpers.constants import KEY_LENGTH_IN_BITS
 
 
 class ECDH():

@@ -1,5 +1,5 @@
-from ..common.findPrimitiveRoot import findPrimitiveRoot
-from ..helpers.constants import KEY_LENGTH_IN_BITS
+from core.math.findPrimitiveRoot import findPrimitiveRoot
+from src.constants.keyConstants import KEY_LENGTH_IN_BITS
 from random import randint
 from sympy import randprime
 

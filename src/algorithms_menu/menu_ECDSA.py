@@ -1,8 +1,9 @@
-from ..helpers.constants import ECDSA_choice, BACK, EXIT
-from ..helpers.colors import printTextAndValue, printText, end, warning
-from ..helpers.fileHelpers import writeParams, readParams
-from ..algorithms.ECDSA import ECDSA
-from ..helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+from src.algorithms.ECDSA import ECDSA
+from src.constants.algorithmMenuConstants import ECDSA_choice
+from core.constants.interfaceConstants import BACK, EXIT
+from core.styles.colors import printTextAndValue, printText, end, warning
+from core.helpers.fileHelpers import writeParams, readParams
+from core.helpers.dictionaryHelpers import dictionaryGetValueKeySeparated
 
 
 while True:

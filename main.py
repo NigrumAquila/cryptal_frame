@@ -1,9 +1,9 @@
-import src.helpers.encoding
-from src.helpers.colors import warning, end
-from src.helpers.constants import ALGORITHM_choice, BACK, EXIT, ALGORITHM_MENU_MODULE_SPACE
-from src.helpers.deleteModuleIfReturn import deleteModuleIfReturn
-from src.helpers.dictionaryKeyParser import dictionaryKeyParser
-from src.helpers.dictionaryGetValueKeySeparated import dictionaryGetValueKeySeparated
+import core.encoding.toUTF8
+from core.styles.colors import warning, end
+from core.helpers.dictionaryHelpers import dictionaryKeyParser, dictionaryGetValueKeySeparated
+from core.constants.interfaceConstants import BACK, EXIT, ALGORITHM_MENU_MODULE_SPACE
+from core.removers.removeModule import removeModule
+from src.constants.algorithmConstants import ALGORITHM_choice
 
 
 while True:
@@ -11,7 +11,7 @@ while True:
     for alg in ALGORITHM_choice.keys():
         if case == ALGORITHM_choice[alg]:
             __import__(ALGORITHM_MENU_MODULE_SPACE + dictionaryKeyParser(ALGORITHM_choice, case))
-            deleteModuleIfReturn(dictionaryKeyParser(ALGORITHM_choice, case))
+            removeModule(dictionaryKeyParser(ALGORITHM_choice, case))
     
     if case == EXIT:
         end('Execution completed.')

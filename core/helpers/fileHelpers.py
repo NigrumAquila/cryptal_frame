@@ -1,7 +1,6 @@
-from .pickFile import pickFile
-from .colors import typedText
 from os.path import splitext, isfile
-from .constants import ASSYMETRIC_ALGORITHMS, ENCRYPTION_ALGORITHMS, HASH_FUNCTIONS
+from core.styles.colors import typedText
+from src.constants.algorithmConstants import ASSYMETRIC_ALGORITHMS, ENCRYPTION_ALGORITHMS, HASH_FUNCTIONS
 
 
 
@@ -13,7 +12,7 @@ def writeParams(params, alg):
         pointFile.close(); return
 
     if alg in HASH_FUNCTIONS:
-        digestFile = open(params['filename'] + '.' + alg.lower() + '_digest', 'wb')
+        digestFile = open(params['filepath'] + '.' + alg.lower() + '_digest', 'wb')
         digestFile.write(params['digest'].upper().encode())
         digestFile.close(); return
 
@@ -31,7 +30,7 @@ def writeParams(params, alg):
 
 
 def readParams(pathToParams=None):
-    if pathToParams == None: pathToParams = pickFile()
+    if pathToParams == None: pathToParams = __pickFile()
 
     params = {}
     fileParams = open(pathToParams, 'r').readlines()
@@ -44,7 +43,7 @@ def readParams(pathToParams=None):
 
 
 def pickFileFor(purpose):
-    srcFilePath = pickFile()
+    srcFilePath = __pickFile()
     filename, file_extension = splitext(srcFilePath)
     if purpose == 'encrypt': dstFilePath = filename + '.encrypted' + file_extension
     elif purpose == 'decrypt': 
@@ -57,6 +56,22 @@ def pickFileFor(purpose):
         if file_extension == '.sign': raise Exception('You picked signature. Nonsense.')
         return open(srcFilePath, 'rb'), open(filename + '.sign', 'rb')
 
+    elif purpose == 'encryptPoint': return readParams(srcFilePath), open(srcFilePath[:-2] + '.encrypted' + srcFilePath[-2:], 'wb')
+    elif purpose == 'decryptPoint': return readParams(srcFilePath), open(srcFilePath[:-12] + '.decrypted' + srcFilePath[-2:], 'wb')
+
+    elif purpose == 'digest': return open(srcFilePath, 'rb'), srcFilePath
+
     srcFile = open(srcFilePath, 'rb')
     dstFile = open(dstFilePath, 'wb')
     return srcFile, dstFile
+
+
+def __pickFile(title='Open'):
+    from tkinter import filedialog, Tk
+
+    if not 'root' in locals(): 
+        root = Tk()
+        root.attributes("-topmost", True)
+        root.withdraw()
+
+    return filedialog.askopenfilename(title=title)

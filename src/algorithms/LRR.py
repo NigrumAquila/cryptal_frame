@@ -1,5 +1,5 @@
-from ..helpers.fileHelpers import pickFileFor
-from ..helpers.constants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
+from core.helpers.fileHelpers import pickFileFor
+from src.constants.keyConstants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
 
 
 class LRR:
