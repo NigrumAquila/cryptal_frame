@@ -45,6 +45,7 @@ def readParams(pathToParams=None):
 def pickFileFor(purpose):
     srcFilePath = __pickFile()
     filename, file_extension = splitext(srcFilePath)
+
     if purpose == 'encrypt': dstFilePath = filename + '.encrypted' + file_extension
     elif purpose == 'decrypt': 
         if filename[-9:] == 'encrypted': dstFilePath = filename[:-9] + 'decrypted' + file_extension
@@ -56,14 +57,15 @@ def pickFileFor(purpose):
         if file_extension == '.sign': raise Exception('You picked signature. Nonsense.')
         return open(srcFilePath, 'rb'), open(filename + '.sign', 'rb')
 
-    elif purpose == 'encryptPoint': return readParams(srcFilePath), open(srcFilePath[:-2] + '.encrypted' + srcFilePath[-2:], 'wb')
-    elif purpose == 'decryptPoint': return readParams(srcFilePath), open(srcFilePath[:-12] + '.decrypted' + srcFilePath[-2:], 'wb')
+    elif purpose == 'get_path': return srcFilePath
 
     elif purpose == 'digest': return open(srcFilePath, 'rb'), srcFilePath
 
     srcFile = open(srcFilePath, 'rb')
     dstFile = open(dstFilePath, 'wb')
     return srcFile, dstFile
+
+
 
 
 def __pickFile(title='Open'):

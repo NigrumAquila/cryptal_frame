@@ -16,18 +16,12 @@ class EC_EL_GAMAL():
 
     @staticmethod
     def encrypt(publicKey):
-        # filename = pickFile()
-        # point = readParams(filename)
-        point, dstFile = pickFileFor('encryptPoint')
+        filepath = pickFileFor('get_path')
+        point = readParams(filepath)
+        dstFile = open(filepath[:-2] + '.encrypted' + filepath[-2:], 'wb')
         k = randint(0, publicKey['order'])
         a = EC.multiply({'x': publicKey['x'], 'y': publicKey['y']}, k)
         b = EC.addition({'x': point['x'],'y': point['y']}, EC.multiply({'x': publicKey['Qx'], 'y': publicKey['Qy']}, k))
-        # dstFile = open(filename[:-2] + '.encrypted' + filename[-2:], 'wb')
-        
-        # cipher = [a, b]
-        # for half in cipher:
-        #     for param in half.keys(): dstFile.write(param.encode() + ': '.encode() + str(half[param]).encode() + '\n'.encode())
-        
         for param in a.keys(): dstFile.write('a'.encode() + param.encode() + ': '.encode() + str(hex(a[param])[2:]).encode() + '\n'.encode())
         for param in b.keys(): dstFile.write('b'.encode() + param.encode() + ': '.encode() + str(hex(b[param])[2:]).encode() + '\n'.encode())
         dstFile.close()
@@ -35,10 +29,9 @@ class EC_EL_GAMAL():
 
     @staticmethod
     def decrypt(privateKey):
-        # filename = pickFile()
-        # cipher = readParams(filename)
-        cipher, dstFile = pickFileFor('decryptPoint')
+        filepath = pickFileFor('get_path')
+        cipher = readParams(filepath)
+        dstFile = open(filepath[:-12] + '.decrypted' + filepath[-2:], 'wb')
         decryptedPoint = EC.addition({'x': cipher['bx'], 'y': cipher['by']}, EC.reflectPoint(EC.multiply({'x': cipher['ax'],'y': cipher['ay']}, privateKey['d'])))
-        # dstFile = open(filename[:-12] + '.decrypted' + filename[-2:], 'wb')
         for param in decryptedPoint.keys(): dstFile.write(param.encode() + ': '.encode() + str(hex(decryptedPoint[param])[2:]).encode() + '\n'.encode())
         dstFile.close()
