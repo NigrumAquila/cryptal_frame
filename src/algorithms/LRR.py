@@ -4,7 +4,7 @@ from src.constants.keyConstants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
 
 class LRR:
 
-    TAPS = (8,7,6,1)
+    TAPS = (128,126,101,99)
 
     generateKey = staticmethod(lambda: {'private': {'seed': int.from_bytes(getattr(__import__('os'), 'urandom')(KEY_LENGTH_IN_BYTES), byteorder='big')}})
     

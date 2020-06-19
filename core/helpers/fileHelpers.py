@@ -31,6 +31,7 @@ def writeParams(params, alg):
 
 def readParams(pathToParams=None):
     if pathToParams == None: pathToParams = __pickFile()
+    if pathToParams == '': raise Exception('File not selected.')
 
     params = {}
     fileParams = open(pathToParams, 'r').readlines()
@@ -44,6 +45,7 @@ def readParams(pathToParams=None):
 
 def pickFileFor(purpose):
     srcFilePath = __pickFile()
+    if srcFilePath == '': raise Exception('File not selected.')
     filename, file_extension = splitext(srcFilePath)
 
     if purpose == 'encrypt': dstFilePath = filename + '.encrypted' + file_extension
@@ -57,9 +59,9 @@ def pickFileFor(purpose):
         if file_extension == '.sign': raise Exception('You picked signature. Nonsense.')
         return open(srcFilePath, 'rb'), open(filename + '.sign', 'rb')
 
-    elif purpose == 'get_path': return srcFilePath
-
     elif purpose == 'digest': return open(srcFilePath, 'rb'), srcFilePath
+
+    elif purpose == 'get_path': return srcFilePath
 
     srcFile = open(srcFilePath, 'rb')
     dstFile = open(dstFilePath, 'wb')

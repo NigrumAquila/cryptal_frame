@@ -1,9 +1,9 @@
 import core.encoding.toUTF8
-from core.styles.colors import warning, end
-from core.helpers.dictionaryHelpers import dictionaryKeyParser, dictionaryGetValueKeySeparated
-from core.constants.interfaceConstants import BACK, EXIT, ALGORITHM_MENU_MODULE_SPACE
-from core.removers.removeModule import removeModule
 from src.constants.algorithmConstants import ALGORITHM_choice
+from core.constants.interfaceConstants import BACK, EXIT, ALGORITHM_MENU_MODULE_SPACE
+from core.helpers.dictionaryHelpers import dictionaryKeyParser, dictionaryGetValueKeySeparated
+from core.removers.removeModule import removeModule
+from core.styles.colors import warning, end
 
 
 while True:
