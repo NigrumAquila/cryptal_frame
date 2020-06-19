@@ -1,0 +1,5 @@
+Adding algorithm:
+1. Add alg name and number in src/constants/algorithmConstants
+2. Add alg points in src/constants/algorithmMenuConstants
+3. Add and fill alg menu in src/algorithms_menu
+4. Add and fill alg implementation in src/algorithms

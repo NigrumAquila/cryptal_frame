@@ -1,0 +1,5 @@
+Removing algorithm:
+1. Remove alg in src/constants/algorithmConstants
+2. Remove alg menu in src/constants/algorithmMenuConstants
+3. Remove alg menu in src/algorithms_menu
+4. Remove alg implementation in src/algorithms
