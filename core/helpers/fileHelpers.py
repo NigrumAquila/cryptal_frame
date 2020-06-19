@@ -69,6 +69,16 @@ def pickFileFor(purpose):
 
 
 
+def truncateFile(filepath):
+    with open(filepath, 'rb+') as srcFile:
+        srcFile.seek(0, 2); srcFile.seek(srcFile.tell() - 16, 0)
+        data = srcFile.read()
+        if chr(0).encode() in data: truncateSize = data.count('\x00'.encode())
+        srcFile.seek(0, 2); srcFile.seek(srcFile.tell() - truncateSize, 0)
+        srcFile.truncate()
+
+
+
 
 def __pickFile(title='Open'):
     from tkinter import filedialog, Tk

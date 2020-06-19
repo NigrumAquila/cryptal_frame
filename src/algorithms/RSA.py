@@ -21,11 +21,11 @@ class RSA:
 
     @staticmethod
     def encrypt(publicKey):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
         
-        with Bar('Processing', max=len(srcFile.read())) as bar:
+        with Bar(total=len(srcFile.read())) as bar:
             srcFile.seek(0)
             while True:
                 char = srcFile.read(1)
@@ -33,18 +33,18 @@ class RSA:
                 cipherChar = pow(int.from_bytes(char, byteorder='big'), publicKey['e'], publicKey['n'])
                 cipherBytes = cipherChar.to_bytes(KEY_LENGTH_IN_BYTES, byteorder='big')
                 dstFile.write(cipherBytes)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
 
 
     @staticmethod
     def decrypt(privateKey):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
         d, n  = int(privateKey['d']), int(privateKey['n'])
 
-        with Bar('Processing', max=len(srcFile.read())/KEY_LENGTH_IN_BYTES) as bar:
+        with Bar(total=len(srcFile.read())/KEY_LENGTH_IN_BYTES) as bar:
             srcFile.seek(0)
             while True:
                 char = srcFile.read(KEY_LENGTH_IN_BYTES)
@@ -52,5 +52,5 @@ class RSA:
                 decryptedChar = pow(int.from_bytes(char, byteorder='big'), d, n)
                 decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
                 dstFile.write(decryptedByte)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()

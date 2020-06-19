@@ -306,11 +306,11 @@ class DES():
 
     @staticmethod
     def encrypt(key):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
 
-        with Bar('Processing', max=len(srcFile.read())/(8)) as bar:
+        with Bar(total=len(srcFile.read())/(8)) as bar:
             srcFile.seek(0)
             while True:
                 block = srcFile.read(8)
@@ -318,17 +318,17 @@ class DES():
                 if len(block) != 8: block += ''.join(chr(0) for char in range(8 - len(block))).encode()
                 cipherBlock = encryptBlock(block, key)
                 dstFile.write(cipherBlock)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
         
     
     @staticmethod
     def decrypt(key):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
 
-        with Bar('Processing', max=len(srcFile.read())/(8)) as bar:
+        with Bar(total=len(srcFile.read())/(8)) as bar:
             srcFile.seek(0)
             while True:
                 block = srcFile.read(8)
@@ -337,6 +337,6 @@ class DES():
                 if chr(0).encode() in decryptedBlock: decryptedBlock = decryptedBlock.replace('\x00'.encode(), ''.encode())
                 if chr(8).encode() in decryptedBlock: decryptedBlock = decryptedBlock.replace('\x08'.encode(), ''.encode())
                 dstFile.write(decryptedBlock)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
 

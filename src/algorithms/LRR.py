@@ -21,12 +21,12 @@ class LRR:
 
     @staticmethod
     def encrypt(key):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
         shift_register_state = key['seed']
 
-        with Bar('Processing', max=len(srcFile.read())) as bar:
+        with Bar(total=len(srcFile.read())) as bar:
             srcFile.seek(0)
             while True:
                 char = srcFile.read(1)
@@ -36,18 +36,18 @@ class LRR:
                 cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
                 cipherBytes = cipherChar.to_bytes(KEY_LENGTH_IN_BYTES, byteorder='big')
                 dstFile.write(cipherBytes)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
 
 
     @staticmethod
     def decrypt(key):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
         shift_register_state = key['seed']
 
-        with Bar('Processing', max=len(srcFile.read())/(KEY_LENGTH_IN_BYTES)) as bar:
+        with Bar(total=len(srcFile.read())/(KEY_LENGTH_IN_BYTES)) as bar:
             srcFile.seek(0)
             while True:
                 char = srcFile.read(KEY_LENGTH_IN_BYTES)
@@ -57,5 +57,5 @@ class LRR:
                 decryptedChar = gamma ^ int.from_bytes(char, byteorder='big')
                 decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
                 dstFile.write(decryptedByte)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()

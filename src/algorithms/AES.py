@@ -1,4 +1,4 @@
-from core.helpers.fileHelpers import pickFileFor
+from core.helpers.fileHelpers import pickFileFor, truncateFile
 
 
 Sbox = (
@@ -96,11 +96,11 @@ class AES():
 
     @staticmethod
     def encrypt(round_keys):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('encrypt')
 
-        with Bar('Processing', max=len(srcFile.read())/(16)) as bar:
+        with Bar(total=len(srcFile.read())//(16)) as bar:
             srcFile.seek(0)
             while True:
                 block = srcFile.read(16)
@@ -116,17 +116,17 @@ class AES():
                 AES.__add_round_key(plain_state, round_keys[40:])
                 cipherBlock = matrix2text(plain_state).to_bytes(16, byteorder='big')
                 dstFile.write(cipherBlock)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
 
 
     @staticmethod
     def decrypt(round_keys):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
 
-        with Bar('Processing', max=len(srcFile.read())/(16)) as bar:
+        with Bar(total=len(srcFile.read())//(16)) as bar:
             srcFile.seek(0)
             while True:
                 block = srcFile.read(16)
@@ -140,10 +140,12 @@ class AES():
                     AES.__round_decrypt(cipher_state, round_keys[4 * i : 4 * (i + 1)])
                 AES.__add_round_key(cipher_state, round_keys[:4])
                 decryptedBlock = matrix2text(cipher_state).to_bytes(16, byteorder='big')
-                if chr(0).encode() in decryptedBlock: decryptedBlock = decryptedBlock.replace('\x00'.encode(), ''.encode())
+                # if chr(0).encode() in decryptedBlock: decryptedBlock = decryptedBlock.replace('\x00'.encode(), ''.encode())
                 dstFile.write(decryptedBlock)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
+
+        truncateFile(dstFile.name)
 
 
 

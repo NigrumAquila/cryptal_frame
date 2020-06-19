@@ -20,13 +20,14 @@ class EL_GAMAL():
 
     @staticmethod
     def encrypt(publicKey):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
+
         srcFile, dstFile = pickFileFor('encrypt')
         k = randint(1, publicKey['p'] - 1)
         a = pow(publicKey['g'], k, publicKey['p'])
         dstFile.write(a.to_bytes(KEY_LENGTH_IN_BYTES, byteorder='big'))
 
-        with Bar('Processing', max=len(srcFile.read())) as bar:
+        with Bar(total=len(srcFile.read())) as bar:
             srcFile.seek(0)
             while True:
                 char = srcFile.read(1)
@@ -34,18 +35,18 @@ class EL_GAMAL():
                 cipherChar = (pow(publicKey['y'], k, publicKey['p']) * int.from_bytes(char, byteorder='big')) % publicKey['p']
                 cipherBytes = cipherChar.to_bytes(KEY_LENGTH_IN_BYTES, byteorder='big')
                 dstFile.write(cipherBytes)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
 
 
     @staticmethod
     def decrypt(privateKey):
-        from progress.bar import FillingCirclesBar as Bar
+        from tqdm import tqdm as Bar
 
         srcFile, dstFile = pickFileFor('decrypt')
         a = int.from_bytes(srcFile.read(KEY_LENGTH_IN_BYTES), byteorder='big')
 
-        with Bar('Processing', max=len(srcFile.read())/(KEY_LENGTH_IN_BYTES)) as bar:
+        with Bar(total=len(srcFile.read())/(KEY_LENGTH_IN_BYTES)) as bar:
             srcFile.seek(KEY_LENGTH_IN_BYTES)
             while True:
                 char = srcFile.read(KEY_LENGTH_IN_BYTES)
@@ -54,5 +55,5 @@ class EL_GAMAL():
                 decryptedChar = (int.from_bytes(char, byteorder='big') * pow(s, privateKey['p']-2, privateKey['p'])) % privateKey['p']
                 decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
                 dstFile.write(decryptedByte)
-                bar.next()
+                bar.update()
         srcFile.close(); dstFile.close()
