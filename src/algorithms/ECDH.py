@@ -1,5 +1,5 @@
 from src.algorithms.EC import EC
-from core.helpers.fileHelpers import readParams, pickFileFor
+from core.helpers.fileHelpers import readParams
 from src.constants.keyConstants import KEY_LENGTH_IN_BITS
 from random import randint
 

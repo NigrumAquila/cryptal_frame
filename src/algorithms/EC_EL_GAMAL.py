@@ -1,5 +1,5 @@
 from src.algorithms.EC import EC
-from core.helpers.fileHelpers import pickFileFor, readParams, writeParams
+from core.helpers.fileHelpers import pickFileFor, readParams
 from random import randint
 
 

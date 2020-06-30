@@ -1,5 +1,5 @@
 from core.helpers.fileHelpers import pickFileFor
-from src.constants.keyConstants import KEY_LENGTH_IN_BITS, KEY_LENGTH_IN_BYTES
+from src.constants.keyConstants import KEY_LENGTH_IN_BYTES
 
 
 class LRR:
@@ -47,7 +47,7 @@ class LRR:
         srcFile, dstFile = pickFileFor('decrypt')
         shift_register_state = key['seed']
 
-        with Bar(total=len(srcFile.read())/(KEY_LENGTH_IN_BYTES)) as bar:
+        with Bar(total=len(srcFile.read())//(KEY_LENGTH_IN_BYTES)) as bar:
             srcFile.seek(0)
             while True:
                 char = srcFile.read(KEY_LENGTH_IN_BYTES)

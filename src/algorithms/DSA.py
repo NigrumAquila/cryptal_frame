@@ -1,5 +1,5 @@
 from src.algorithms.SHA256 import SHA256
-from core.helpers.fileHelpers import pickFileFor, readParams
+from core.helpers.fileHelpers import pickFileFor
 from core.math.multiplicativeInverse import multiplicativeInverse
 from random import randint
 from sympy import isprime
