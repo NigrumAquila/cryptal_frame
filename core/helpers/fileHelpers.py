@@ -53,11 +53,11 @@ def pickFileFor(purpose):
         if filename[-9:] == 'encrypted': dstFilePath = filename[:-9] + 'decrypted' + file_extension
         else: raise Exception('You are trying to decrypt an unencrypted file.')
     
-    elif purpose == 'sign': dstFilePath = filename + '.sign'
+    elif purpose == 'sign': dstFilePath = srcFilePath + '.sign'
     elif purpose == 'verify':
-        if not isfile(filename + '.sign'): raise Exception('Signature not exist')
+        if not isfile(srcFilePath + '.sign'): raise Exception('Signature not exist')
         if file_extension == '.sign': raise Exception('You picked signature. Nonsense.')
-        return open(srcFilePath, 'rb'), open(filename + '.sign', 'rb')
+        return open(srcFilePath, 'rb'), open(srcFilePath + '.sign', 'rb')
 
     elif purpose == 'digest': return open(srcFilePath, 'rb'), srcFilePath
 
