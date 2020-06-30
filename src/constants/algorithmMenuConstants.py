@@ -75,3 +75,11 @@ DSA_choice = {
     'SIGN_FILE': '4',
     'VERIFY_FILE': '5',
 }
+
+EL_GAMAL_SIGNATURE_SCHEME_choice = {
+    'GENERATE_KEYS': '1',
+    'SELECT_PUBLIC_KEY': '2',
+    'SELECT_PRIVATE_KEY': '3',
+    'SIGN_FILE': '4',
+    'VERIFY_FILE': '5',
+}
